@@ -1,7 +1,7 @@
 .maindiv{
     background:linear-gradient(45deg,red,rgb(6, 223, 143));
     padding: 20px;
-    width: 70vh;
+    width: 70vw;
     height: 100vh;
     display: inline-block;
     justify-content: center;
