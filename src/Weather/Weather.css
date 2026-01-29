@@ -1,0 +1,82 @@
+.maindiv{
+    background:linear-gradient(45deg,red,rgb(6, 223, 143));
+    padding: 20px;
+    width: 70vh;
+    height: 100vh;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+ }
+  .Searchdiv div{
+    
+    background-color: white;
+    width: 50px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+ }
+  .Searchdiv input{
+      height: 30px;
+      width: 40vh;
+      border-radius: 20px;
+      padding: 10px;
+      font-size: 1.5em;
+      border: none;
+ }
+  .Searchdiv{
+    display: flex;
+    justify-content: space-evenly;
+ }
+.wheather_img{
+   width: 10vw;
+
+}
+ .tempdiv{
+    /* display: inline-block; */
+    display: flex;
+    justify-content: space-around;
+    margin-top: 4rem;
+ }
+
+
+ .loctemp{
+    font-size: 2em;
+    display: inline;
+    justify-content: center;
+    align-content: center;
+ }
+ .humidity{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+ }
+ .humid{
+    display: inline-block;
+    justify-content: center;
+    align-content:center;
+    color:rgb(162, 219, 19);
+    margin-left:20px;
+    font-size: larger;
+    
+ }
+ .wind{
+    display: flex;
+    justify-items: center;
+    align-items: center;
+ }
+ .windspeed{
+    justify-content: center;
+    align-items: center;
+    margin-left:20px;
+    color:rgb(162, 219, 19);
+    font-size: larger;
+    font:bolder;
+    
+ }
+
+ 
+
