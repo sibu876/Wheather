@@ -87,6 +87,7 @@
     justify-content: center;
     align-items: center;
     text-align: center;
+    
  }
 
   .Searchdiv input{
@@ -96,9 +97,14 @@
       border: none;
  }
  .wheather_img{
+   margin-top: 15vh;
    width: 20vw;
 
 }
+ .tempdiv{
+   
+    margin-top: 8rem;
+ }
 
 }
 
