@@ -1,8 +1,8 @@
 .maindiv{
     background:linear-gradient(45deg,red,rgb(6, 223, 143));
     padding: 20px;
-    width: 70vw;
-    height: 100vh;
+    width: 40vw;
+    height: 90vh;
     display: inline-block;
     justify-content: center;
     align-items: center;
@@ -20,7 +20,7 @@
  }
   .Searchdiv input{
       height: 30px;
-      width: 40vw;
+      width: 30vw;
       border-radius: 20px;
       padding: 10px;
       font-size: 1.5em;
@@ -77,6 +77,30 @@
     font:bolder;
     
  }
+
+@media screen and (min-width:320px) and (max-width:480px){
+   .maindiv{
+    padding: 20px;
+    width: 100vw;
+    height: 100vh;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+ }
+
+  .Searchdiv input{
+      height: 30px;
+      width: 60vw;
+      font-size: 1.2em;
+      border: none;
+ }
+ .wheather_img{
+   width: 20vw;
+
+}
+
+}
 
  
 
