@@ -1,101 +1,104 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from "react";
 import Search from "../assets/search.png";
 import Humidity from "../assets/humidity.png";
 import Wind from "../assets/wind.png";
-import './Weather.css'
+import "./Weather.css";
+
 const KEY_VALUE = import.meta.env.VITE_KEY_VALUE;
 
 function Weather() {
-  const [Weatherdata, setWeatherdata] = useState(null);
+  const [weatherData, setWeatherData] = useState(null);
   const [city, setCity] = useState("New Delhi");
-  const [inputvalue,setInputvalue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   const search = async () => {
     try {
-      const response = await fetch(`https://api.weatherapi.com/v1/current.json?key=${KEY_VALUE}&q=${city}&aqi=no`);
+      const response = await fetch(
+        `https://api.weatherapi.com/v1/current.json?key=${KEY_VALUE}&q=${city}&aqi=no`
+      );
       const data = await response.json();
       if (!data.current) return;
-      setWeatherdata({
-        icon: data.current.condition.icon,
-        tempreature: data.current.temp_c,
-        wind: data.current.wind_kph,
-        humidity: data.current.humidity
-      })
 
+      setWeatherData({
+        icon: data.current.condition.icon,
+        temperature: data.current.temp_c,
+        wind: data.current.wind_kph,
+        humidity: data.current.humidity,
+        location: `${data.location.name}, ${data.location.country}`,
+      });
+    } catch (error) {
+      console.error("Error fetching weather:", error);
     }
-    catch (error) {
-      console.error("Unable to fetch data", error);
-    }
-  }
+  };
+
   useEffect(() => {
     search();
-  }, [city])
- 
-  function searchbutton(){
-    
-    if(!inputvalue.trim()) return;
-    setCity(inputvalue);
-  }
-  function handleInputchange(e){
-     setInputvalue(e.target.value);
+  }, [city]);
 
-  }
-
+  const searchCity = () => {
+    if (!inputValue.trim()) return;
+    setCity(inputValue);
+    setInputValue("");
+  };
 
   return (
-    <>
-      <div className='maindiv'>
-        {/* Search Div */}
-        <div className='Searchdiv'>
-          <input type="text"
-          value={inputvalue}
-          onChange={handleInputchange}
-          onKeyDown={(e) => e.key === "Enter" && searchbutton()}
-          placeholder='Enter City here'
-           />
-          <div>
-            <img src={Search} alt="Search button"
-            onClick={searchbutton} />
-          </div>
-        </div>
-        {/*Wheather image */}
-        <div className='wheather_details'>
+    <div className="app-container">
+      
+      {/* Rising Sun */}
+      <div className="sun-glow"></div>
 
-          <img src={Weatherdata && Weatherdata.icon} alt="Wheather image" className='wheather_img' />
+      {/* Shiny Clouds */}
+      <div className="cloud cloud1"></div>
+      <div className="cloud cloud2"></div>
 
-          {/*Tempreature and Location div */}
-          <div className='loctemp'>
-            <h1 className='cent'>{Weatherdata && Weatherdata.tempreature}&#xB0; c</h1>
-            <h3 className='city'>{city}</h3>
-          </div>
-
+      <div className="weather-card">
+        <div className="search-bar">
+          <input
+            type="text"
+            placeholder="Search city..."
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && searchCity()}
+          />
+          <button onClick={searchCity}>
+            <img src={Search} alt="search" />
+          </button>
         </div>
 
-        {/*Humidity And Wind Speed Showing Div */}
-        <div className='tempdiv'>
-          {/*humidty div */}
-          <div className='humidity'>
-            <img src={Humidity} alt="Humidity div" />
-            <div className='humid'>
-              <h3>{Weatherdata && Weatherdata.humidity}</h3>
-              <p>Humidity</p>
+        {weatherData && (
+          <>
+            <div className="weather-info">
+              <img
+                src={weatherData.icon}
+                alt="weather"
+                className="weather-icon"
+              />
+              <h1>{weatherData.temperature}°C</h1>
+              <h3>{weatherData.location}</h3>
             </div>
 
-          </div>
-          {/*Wind Speed div */}
-          <div className='wind'>
-            <img src={Wind} alt="Wind Image" />
-            <div className='windspeed'>
-              <h3>{Weatherdata && Weatherdata.wind}km/hr</h3>
-              <p>Wind Speed</p>
+            <div className="details">
+              <div className="detail-box">
+                <img src={Humidity} alt="humidity" />
+                <div>
+                  <h4>{weatherData.humidity}%</h4>
+                  <p>Humidity</p>
+                </div>
+              </div>
+
+              <div className="detail-box">
+                <img src={Wind} alt="wind" />
+                <div>
+                  <h4>{weatherData.wind} km/h</h4>
+                  <p>Wind Speed</p>
+                </div>
+              </div>
             </div>
-
-          </div>
-        </div>
-
+          </>
+        )}
       </div>
-    </>
-  )
+    </div>
+  );
 }
 
-export default Weather
+export default Weather;
